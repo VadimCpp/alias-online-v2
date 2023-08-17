@@ -1,0 +1,13 @@
+
+  .card {
+    @apply w-52 h-80 border rounded-xl border-gray-300 mx-auto mb-8
+  }
+
+  .card__icon {
+    @apply leading-loose text-9xl text-center
+  }
+
+  .card__label {
+    @apply text-center text-lg leading-10 bg-amber-400
+  }
+

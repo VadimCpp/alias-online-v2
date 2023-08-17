@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Card from './components/card'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -17,6 +18,8 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
+      <Card icon="🔥" label="Hot" />
+      <Card icon="⚡️" label="Lightning" />
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
