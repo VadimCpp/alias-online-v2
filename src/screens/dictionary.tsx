@@ -1,7 +1,7 @@
-import Card from './components/card'
-import Vocabulary from './assets/vocabulary.json'
+import Card from '../components/card'
+import Vocabulary from '../assets/vocabulary.json'
 
-function App() {
+function Dictionary() {
   return (
     <main>
       <h1 className='text-4xl font-bold text-center mb-8 bg-gray-800 text-white py-8'>Vocabulary (Autodeployed)</h1>
@@ -16,4 +16,4 @@ function App() {
   )
 }
 
-export default App
+export default Dictionary
