@@ -20,18 +20,16 @@ jobs:
 
       - name: Install Dependencies
         run: npm install
-        working-directory: $GITHUB_WORKSPACE
 
       - name: Build dist
         run: npm run build
-        working-directory: $GITHUB_WORKSPACE
 
       - name: Deploy to Azure Storage
         uses: Azure/cli@v1
         with:
           inlineScript: |
             az storage blob delete-batch --source '${{ secrets.AZURE_CONTAINER_NAME }}' --account-name '${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }}'
-            az storage blob upload-batch --destination '${{ secrets.AZURE_CONTAINER_NAME }}' --type block --pattern '**' --account-name '${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }}' --source $GITHUB_WORKSPACE/dist
+            az storage blob upload-batch --destination '${{ secrets.AZURE_CONTAINER_NAME }}' --type block --pattern '**' --account-name '${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }}' --source dist
 
         env:
           AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
