@@ -1,0 +1,37 @@
+name: Azure Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Dependencies
+        run: npm install
+        working-directory: $GITHUB_WORKSPACE
+
+      - name: Build dist
+        run: npm run build
+        working-directory: $GITHUB_WORKSPACE
+
+      - name: Deploy to Azure Storage
+        uses: Azure/cli@v1
+        with:
+          inlineScript: |
+            az storage blob delete-batch --source '${{ secrets.AZURE_CONTAINER_NAME }}' --account-name '${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }}'
+            az storage blob upload-batch --destination '${{ secrets.AZURE_CONTAINER_NAME }}' --type block --pattern '**' --account-name '${{ secrets.AZURE_STORAGE_ACCOUNT_NAME }}' --source $GITHUB_WORKSPACE/dist
+
+        env:
+          AZURE_STORAGE_CONNECTION_STRING: ${{ secrets.AZURE_STORAGE_CONNECTION_STRING }}
