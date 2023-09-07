@@ -2,6 +2,15 @@
 
 > Visit the webpage: https://aliasonlinestorageacc.z1.web.core.windows.net/
 
+Technology stack:
+
+- react
+- react-router
+- vite
+- typescript
+- TailwindCSS (headlessui, heroicons)
+- Azure
+
 ## Getting Starting
 
 To start development, execute the following commands:
