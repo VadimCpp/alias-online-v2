@@ -1,27 +1,14 @@
-import { Link } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
+import Dropdown from '../components/dropdown'
 
-const Header = () => {
+const Header: React.FC = () => {
+  const location = useLocation();
+  const title = (location.pathname.slice(1)[0].toUpperCase() + location.pathname.slice(2)) || 'Home';
+  
   return (
-    <header>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/dictionary">Dictionary</Link>
-          </li>
-          <li>
-            <Link to="/profile">Profile</Link>
-          </li>
-          <li>
-            <Link to="/room">Room</Link>
-          </li>
-          <li>
-            <Link to="/word">Word</Link>
-          </li>
-        </ul>
-      </nav>
+    <header className='text-4xl font-bold mb-8 bg-gray-800 text-white py-8'>
+      <span className='pl-10'>{ title }</span>
+      <Dropdown />
     </header>
   );
 };
