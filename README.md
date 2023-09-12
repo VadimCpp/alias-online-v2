@@ -4,8 +4,7 @@
 
 Technology stack:
 
-- react
-- react-router
+- react (react-router, react-redux)
 - vite
 - typescript
 - TailwindCSS (headlessui, heroicons)
