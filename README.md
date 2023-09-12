@@ -1,10 +1,10 @@
-# React + TypeScript + Vite + TailwindCSS + Azure
+# React + Redux + TypeScript + Vite + TailwindCSS + Azure
 
 > Visit the webpage: https://aliasonlinestorageacc.z1.web.core.windows.net/
 
 Technology stack:
 
-- react (react-router, react-redux)
+- react (react-router, Redux Toolkit with React)
 - vite
 - typescript
 - TailwindCSS (headlessui, heroicons)
