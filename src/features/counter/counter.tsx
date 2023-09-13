@@ -2,12 +2,12 @@ import type { RootState } from '../../store'
 import { useSelector, useDispatch } from 'react-redux'
 import { decrement, increment } from './counter-slice'
 
-export function Counter() {
+const Counter = () => {
   const count = useSelector((state: RootState) => state.counter.value)
   const dispatch = useDispatch()
 
   return (
-    <div>
+    <div className="mx-4">
       <div className="mt-4">
         <p className="text-2xl">Counter: {count}</p>
       </div>
@@ -32,3 +32,5 @@ export function Counter() {
     </div>
   )
 }
+
+export default Counter

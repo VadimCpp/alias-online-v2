@@ -1,11 +1,10 @@
 import React from 'react'
+import User from '../features/user/user'
 
 const Profile: React.FC = () => {
   return (
     <main>
-      <div className='flex flex-wrap mx-4'>
-        <p>TODO: profile</p>
-      </div>
+      <User />
     </main>
   )
 }
