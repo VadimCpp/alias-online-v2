@@ -16,10 +16,8 @@ export const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 
 export const signInWithGoogle = async (): Promise<void> => {
-  let signInSuccess = false;
   try {
     await signInWithPopup(auth, googleProvider);
-    signInSuccess = true;
   } catch (err: any) {
     console.error("Error while signing in.", err);
   }
