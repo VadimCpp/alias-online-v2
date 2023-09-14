@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { initializeApp } from "firebase/app"
 import { GoogleAuthProvider, signInWithPopup, getAuth, onAuthStateChanged } from "firebase/auth"
 import { getFirestore, collection, onSnapshot } from "firebase/firestore";
 
 import { setName, setPhotoURL, setStatus } from './features/user/user-slice'
 import { setRooms } from './features/room/room-slice'
+import type { RootState } from './store'
 
 
 const googleProvider = new GoogleAuthProvider()
@@ -40,6 +41,7 @@ export const signOut = async (): Promise<void> => {
 
 export const useFirebase = () => {
   const dispatch = useDispatch()
+  const isLogged: boolean = useSelector((state: RootState) => state.user.isLogged)
 
   /**
    * This effect is run once when the app is first loaded.
@@ -61,14 +63,13 @@ export const useFirebase = () => {
    * It sets up a listener for room state changes.
    */
   useEffect(() => {
-    const db = getFirestore();
     const roomsRef = collection(db, "rooms");
     const unsubscribe = onSnapshot(roomsRef, (snapshot) => {
       const rooms: string[] = snapshot.docs.map((doc) => doc.data().name) as string[];
       dispatch(setRooms(rooms))
     })
     return () => unsubscribe();
-  }, [dispatch])
+  }, [dispatch, isLogged])
 
   return null;
 }
