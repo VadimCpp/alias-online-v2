@@ -3,8 +3,8 @@ import { useSelector } from 'react-redux'
 import type { RootState } from '../../store'
 import { signInWithGoogle, signOut } from '../../firebase'
 
-const Counter: React.FC = () => {
-  const isLogged = useSelector((state: RootState) => state.user.isLogged)
+const Login: React.FC = () => {
+  const isLogged: boolean = useSelector((state: RootState) => state.user.isLogged)
 
   return (
     <div className="mt-4 flex justify-center">
@@ -30,4 +30,4 @@ const Counter: React.FC = () => {
   )
 }
 
-export default Counter
+export default Login

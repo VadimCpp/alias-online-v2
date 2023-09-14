@@ -1,7 +1,14 @@
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment } from 'react'
-import { Link } from 'react-router-dom';
-import { ChevronDownIcon, UserIcon, HomeIcon, VideoCameraIcon, BookOpenIcon, ChatBubbleOvalLeftEllipsisIcon } from '@heroicons/react/20/solid'
+import { Link } from 'react-router-dom'
+import {
+  ChevronDownIcon,
+  UserIcon,
+  HomeIcon,
+  VideoCameraIcon,
+  BookOpenIcon,
+  ChatBubbleOvalLeftEllipsisIcon
+} from '@heroicons/react/20/solid'
 
 const Dropdown: React.FC = () => {
   return (

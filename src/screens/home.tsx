@@ -1,10 +1,10 @@
 import React from 'react'
-import Counter from '../features/counter/counter';
+import Welcome from '../features/user/welcome'
 
 const Home: React.FC = () => {
   return (
     <main>
-      <Counter />
+      <Welcome />
     </main>  
   );
 };
