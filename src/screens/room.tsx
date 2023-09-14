@@ -1,11 +1,10 @@
 import React from 'react'
+import Rooms from '../features/room/rooms'
 
 const Room: React.FC = () => {
   return (
     <main>
-      <div className='flex flex-wrap mx-4'>
-        <p>TODO: room</p>
-      </div>
+      <Rooms />
     </main>
   )
 }

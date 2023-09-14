@@ -2,7 +2,9 @@ import React, { useEffect } from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { getAuth, onAuthStateChanged } from "firebase/auth"
+import { getFirestore, collection, onSnapshot } from "firebase/firestore";
 import { setName, setPhotoURL, setStatus } from './features/user/user-slice'
+import { setRooms } from './features/room/room-slice'
 import Dictionary from './screens/dictionary'
 import Home from './screens/home'
 import Profile from './screens/profile'
@@ -27,7 +29,21 @@ const App: React.FC = () => {
       dispatch(setPhotoURL(authUser?.photoURL ? authUser.photoURL : ""))
     });
     return () => unsubscribe();
-  }, []);
+  }, [])
+
+  /**
+   * This effect is run once when the app is first loaded.
+   * It sets up a listener for room state changes.
+   */
+  useEffect(() => {
+    const db = getFirestore();
+    const roomsRef = collection(db, "rooms");
+    const unsubscribe = onSnapshot(roomsRef, (snapshot) => {
+      const rooms: string[] = snapshot.docs.map((doc) => doc.data().name) as string[];
+      dispatch(setRooms(rooms))
+    })
+    return () => unsubscribe();
+  }, [])
 
   return (
     <Router>
