@@ -9,6 +9,7 @@ Technology stack:
 - typescript
 - TailwindCSS (headlessui, heroicons)
 - Azure
+- firebase (Cloud Firestore)
 
 ## Getting Starting
 

@@ -6,16 +6,12 @@ const Rooms: React.FC = () => {
   const rooms = useSelector((state: RootState) => state.room.rooms)
 
   return (
-    <div className="mx-4">
-      <div className="mt-4">
-        <p className="text-2xl">Rooms count: {rooms.length}</p>
-      </div>
+    <section className="mx-4">
+      <h2 className="text-2xl mt-4">Rooms count: {rooms.length}</h2>
       { rooms.map((room, index) => (
-        <div className="mt-4" key={index}>
-          <p className="text-2xl">Room {index}: {room}</p>
-        </div>
+        <p className="mt-4" key={index}>Room {index}: {room}</p>
       ))}
-    </div>
+    </section>
   )
 }
 
