@@ -43,12 +43,7 @@ export const useFirebase = () => {
   const dispatch = useDispatch()
   const isLogged: boolean = useSelector((state: RootState) => state.user.isLogged)
 
-  /**
-   * This effect is run once when the app is first loaded.
-   * It sets up a listener for auth state changes.
-   */
   useEffect(() => {
-    const auth = getAuth();
     const unsubscribe = onAuthStateChanged(auth, authUser => {
       console.log("Auth state changed. Updating user: ", authUser);
       dispatch(setName(authUser?.displayName ? authUser.displayName : ""))
@@ -58,16 +53,17 @@ export const useFirebase = () => {
     return () => unsubscribe();
   }, [dispatch])
 
-  /**
-   * This effect is run once when the app is first loaded.
-   * It sets up a listener for room state changes.
-   */
   useEffect(() => {
-    const roomsRef = collection(db, "rooms");
-    const unsubscribe = onSnapshot(roomsRef, (snapshot) => {
-      const rooms: string[] = snapshot.docs.map((doc) => doc.data().name) as string[];
-      dispatch(setRooms(rooms))
-    })
+    let unsubscribe: () => void = () => { };
+    if (isLogged) {
+      const roomsRef = collection(db, "rooms");
+      unsubscribe = onSnapshot(roomsRef, (snapshot) => {
+        const rooms: string[] = snapshot.docs.map((doc) => doc.data().name) as string[];
+        dispatch(setRooms(rooms))
+      }) 
+    } else {
+      dispatch(setRooms([]))
+    }
     return () => unsubscribe();
   }, [dispatch, isLogged])
 
