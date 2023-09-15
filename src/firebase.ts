@@ -6,6 +6,7 @@ import { getFirestore, collection, onSnapshot } from "firebase/firestore"
 
 import { setName, setPhotoURL, setStatus } from './features/user/user-slice'
 import { setRooms, setUsers } from './features/firestore-data/firestore-data-slice'
+import { setRoom, setPlayers } from './features/room/room-slice'
 import type { RootState } from './store'
 
 
@@ -68,6 +69,8 @@ export const signOut = async (): Promise<void> => {
 export const useFirebase = () => {
   const dispatch = useDispatch()
   const isLogged: boolean = useSelector((state: RootState) => state.user.isLogged)
+  const rooms: Room[] = useSelector((state: RootState) => state.firestore.rooms)
+  const users: User[] = useSelector((state: RootState) => state.firestore.users)
 
   /**
    * Effect for updating user state on auth state change
@@ -83,7 +86,7 @@ export const useFirebase = () => {
   }, [dispatch])
 
   /**
-   * Effect for fetching rooms from firestore
+   * Effect for fetching all rooms from firestore
    */
   useEffect(() => {
     let unsubscribe: () => void = () => { }
@@ -100,7 +103,7 @@ export const useFirebase = () => {
   }, [dispatch, isLogged])
 
   /**
-   * Effect for fetching users from firestore
+   * Effect for fetching all users from firestore
    */
   useEffect(() => {
     let unsubscribe: () => void = () => { }
@@ -115,6 +118,22 @@ export const useFirebase = () => {
     }
     return () => unsubscribe()
   }, [dispatch, isLogged])
+
+  /**
+   * Effect for updating current room info.
+   * 
+   * NOTE!
+   * Only one room with uid "norsk-room" is supported.
+   */
+  useEffect(() => {
+    if (rooms.length === 1 && rooms[0].uid === "norsk-room") {
+      dispatch(setRoom(rooms[0]))
+      dispatch(setPlayers(users.filter(user => user.room === "norsk-room")))
+    } else {
+      dispatch(setRoom(null))
+      dispatch(setPlayers([]))
+    }
+  }, [dispatch, rooms, users])
 
   return null
 }

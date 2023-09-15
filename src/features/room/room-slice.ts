@@ -4,12 +4,12 @@ import type { User, Room } from '../../firebase'
 
 export interface RoomState {
   room: Room | null,	
-  users: User[],
+  players: User[],
 }
 
 const initialState: RoomState = {
   room: null,
-  users: [],
+  players: [],
 }
 
 export const roomSlice = createSlice({
@@ -19,13 +19,13 @@ export const roomSlice = createSlice({
     setRoom: (state, action: PayloadAction<Room | null>) => {
       state.room = action.payload
     },
-    setUsers: (state, action: PayloadAction<User[]>) => {
-      state.users = action.payload
+    setPlayers: (state, action: PayloadAction<User[]>) => {
+      state.players = action.payload
     }
   },
 })
 
 // Action creators are generated for each case reducer function
-export const { setRoom, setUsers } = roomSlice.actions
+export const { setRoom, setPlayers } = roomSlice.actions
 
 export default roomSlice.reducer

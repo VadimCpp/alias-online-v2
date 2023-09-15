@@ -10,7 +10,7 @@ const Users: React.FC = () => {
     <section className="mx-4">
       <h2 className="text-2xl mt-4">Users count: {users.length}</h2>
       { users.map((user: User, index: number) => (
-        <p className="mt-4" key={index}>User {index}: {user.displayName}, {user.score}</p>
+        <p className="mt-4" key={index}>User {index}: {user.displayName} ({user.room || "-"}/{user.score})</p>
       ))}
     </section>
   )
