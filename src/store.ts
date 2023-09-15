@@ -1,11 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit'
 import userReducer from './features/user/user-slice'
 import roomReducer from './features/room/room-slice'
+import firestoreDataReducer from './features/firestore-data/firestore-data-slice'
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     room: roomReducer,
+    firestore: firestoreDataReducer,
   },
 })
 

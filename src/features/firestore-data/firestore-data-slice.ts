@@ -3,12 +3,12 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import type { User, Room } from '../../firebase'
 
 export interface RoomState {
-  room: Room | null,	
+  rooms: Room[],
   users: User[],
 }
 
 const initialState: RoomState = {
-  room: null,
+  rooms: [],
   users: [],
 }
 
@@ -16,8 +16,8 @@ export const roomSlice = createSlice({
   name: 'room',
   initialState,
   reducers: {
-    setRoom: (state, action: PayloadAction<Room | null>) => {
-      state.room = action.payload
+    setRooms: (state, action: PayloadAction<Room[]>) => {
+      state.rooms = action.payload
     },
     setUsers: (state, action: PayloadAction<User[]>) => {
       state.users = action.payload
@@ -26,6 +26,6 @@ export const roomSlice = createSlice({
 })
 
 // Action creators are generated for each case reducer function
-export const { setRoom, setUsers } = roomSlice.actions
+export const { setRooms, setUsers } = roomSlice.actions
 
 export default roomSlice.reducer

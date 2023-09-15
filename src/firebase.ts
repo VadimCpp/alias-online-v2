@@ -5,7 +5,7 @@ import { GoogleAuthProvider, signInWithPopup, getAuth, onAuthStateChanged } from
 import { getFirestore, collection, onSnapshot } from "firebase/firestore"
 
 import { setName, setPhotoURL, setStatus } from './features/user/user-slice'
-import { setRooms, setUsers } from './features/room/room-slice'
+import { setRooms, setUsers } from './features/firestore-data/firestore-data-slice'
 import type { RootState } from './store'
 
 
@@ -22,6 +22,32 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
 export const auth = getAuth(app)
+
+export interface User {
+  displayName: string,
+  greeting: boolean,
+  isActive: boolean,
+  lastActiveAt?: number,
+  photoURL: string,
+  role: string,
+  room?: string,
+  score: number,
+  uid: string,
+}
+
+export interface Room {
+  description: string,
+  lang: string,
+  leaderName?: string,
+  leaderTimestamp?: number,
+  leaderUid?: string,
+  name: string,
+  uid: string,
+  winnerName?: string,
+  winnerTimestamp?: number,
+  winnerUid?: string,
+  word?: string,
+}
 
 export const signInWithGoogle = async (): Promise<void> => {
   try {
@@ -64,7 +90,7 @@ export const useFirebase = () => {
     if (isLogged) {
       const roomsRef = collection(db, "rooms")
       unsubscribe = onSnapshot(roomsRef, (snapshot) => {
-        const rooms: string[] = snapshot.docs.map((doc) => doc.data().name) as string[]
+        const rooms: Room[] = snapshot.docs.map((doc) => doc.data()) as Room[]
         dispatch(setRooms(rooms))
       }) 
     } else {
@@ -81,7 +107,7 @@ export const useFirebase = () => {
     if (isLogged) {
       const usersRef = collection(db, "users")
       unsubscribe = onSnapshot(usersRef, (snapshot) => {
-        const users: string[] = snapshot.docs.map((doc) => doc.data().displayName) as string[]
+        const users: User[] = snapshot.docs.map((doc) => doc.data()) as User[]
         dispatch(setUsers(users))
       }) 
     } else {
