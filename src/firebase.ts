@@ -6,7 +6,7 @@ import { getFirestore, collection, onSnapshot } from "firebase/firestore"
 
 import { setName, setPhotoURL, setStatus } from './features/user/user-slice'
 import { setRooms, setUsers } from './features/firestore-data/firestore-data-slice'
-import { setRoom, setPlayers } from './features/room/room-slice'
+import { setRoom, setPlayers, setState, GameState } from './features/game/game-slice'
 import type { RootState } from './store'
 
 
@@ -129,9 +129,11 @@ export const useFirebase = () => {
     if (rooms.length === 1 && rooms[0].uid === "norsk-room") {
       dispatch(setRoom(rooms[0]))
       dispatch(setPlayers(users.filter(user => user.room === "norsk-room")))
+      dispatch(setState(GameState.NotStarted))
     } else {
       dispatch(setRoom(null))
       dispatch(setPlayers([]))
+      dispatch(setState(null))
     }
   }, [dispatch, rooms, users])
 

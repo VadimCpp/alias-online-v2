@@ -5,8 +5,8 @@ import type { Room, User } from '../../firebase'
 import { signInWithGoogle } from '../../firebase'
 
 const RoomInfo: React.FC = () => {
-  const room: Room | null = useSelector((state: RootState) => state.room.room)
-  const players: User[] = useSelector((state: RootState) => state.room.players)
+  const room: Room | null = useSelector((state: RootState) => state.game.room)
+  const players: User[] = useSelector((state: RootState) => state.game.players)
   const isLogged: boolean = useSelector((state: RootState) => state.user.isLogged)
 
   return (
