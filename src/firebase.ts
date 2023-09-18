@@ -207,7 +207,7 @@ export const useFirebase = () => {
    */
   useEffect(() => {
     dispatch(setPlayers(room ? users.filter(user => isActive(user) && user.room === room.uid) : []))
-  }, [dispatch, room])
+  }, [dispatch, room, users])
 
   /**
    * Effect for updating current room's state.
@@ -226,7 +226,7 @@ export const useFirebase = () => {
     } else {
       dispatch(setState(null))
     }
-  }, [dispatch, room])
+  }, [dispatch, room, uid])
 
   return null
 }
