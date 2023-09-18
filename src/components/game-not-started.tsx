@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { RocketLaunchIcon } from '@heroicons/react/20/solid'
 import { startNewGame } from '../firebase'
 import type { RootState } from '../store'
-import type { User, Room } from '../firebase'
+import type { User, Room } from '../types'
 
 const GameNotStarted: React.FC = () => {
   const room: Room | null = useSelector((state: RootState) => state.game.room)

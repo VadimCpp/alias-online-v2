@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../../store'
-import type { Room } from '../../firebase'
+import type { Room } from '../../types'
 
 /**
  * NOTE!

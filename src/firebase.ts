@@ -5,7 +5,7 @@ import { GoogleAuthProvider, signInWithPopup, getAuth, onAuthStateChanged } from
 import { getFirestore, collection, onSnapshot, doc, updateDoc, setDoc } from "firebase/firestore"
 import type { UserCredential, User as AuthUser } from 'firebase/auth'
 
-import type { Card } from './types'
+import type { Card, User, Room } from './types'
 import Vocabulary from './assets/vocabulary.json'
 import { setName, setPhotoURL, setStatus, setUid } from './features/user/user-slice'
 import { setRooms, setUsers } from './features/firestore-data/firestore-data-slice'
@@ -26,32 +26,6 @@ const firebaseConfig = {
 export const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)
 export const auth = getAuth(app)
-
-export interface User {
-  displayName: string,
-  greeting: boolean,
-  isActive: boolean,
-  lastActiveAt?: number,
-  photoURL: string,
-  role: string,
-  room?: string,
-  score: number,
-  uid: string,
-}
-
-export interface Room {
-  description: string,
-  lang: string,
-  leaderName?: string,
-  leaderTimestamp?: number,
-  leaderUid?: string,
-  name: string,
-  uid: string,
-  winnerName?: string,
-  winnerTimestamp?: number,
-  winnerUid?: string,
-  word?: string,
-}
 
 export const signInWithGoogle = async (): Promise<void> => {
   let signInSuccess: boolean = false
@@ -195,17 +169,19 @@ export const useFirebase = () => {
    * Only one room with uid "norsk-room" is supported.
    */
   useEffect(() => {
+    console.log("Updating room")
     if (rooms.length === 1 && rooms[0].uid === "norsk-room") {
       dispatch(setRoom(rooms[0]))
     } else {
       dispatch(setRoom(null))
     }
-  }, [dispatch, rooms, users])
+  }, [dispatch, rooms])
 
   /**
    * Effect for updating current room's players.
    */
   useEffect(() => {
+    console.log("Updating players for room")
     dispatch(setPlayers(room ? users.filter(user => isActive(user) && user.room === room.uid) : []))
   }, [dispatch, room, users])
 
@@ -213,6 +189,7 @@ export const useFirebase = () => {
    * Effect for updating current room's state.
    */
   useEffect(() => {
+    console.log("Updating game state")
     if (room && !room?.leaderUid && !room?.winnerUid) {
       dispatch(setState(GameState.NotStarted))
     } else if (room?.leaderUid && uid && room?.leaderUid !== uid) {

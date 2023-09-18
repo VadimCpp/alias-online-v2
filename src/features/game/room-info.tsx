@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../../store'
-import type { Room, User } from '../../firebase'
+import type { Room, User } from '../../types'
 import { signInWithGoogle } from '../../firebase'
 
 const RoomInfo: React.FC = () => {

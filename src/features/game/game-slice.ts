@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { User, Room } from '../../firebase'
+import type { User, Room } from '../../types'
 
 export enum GameState {
   NotStarted = "not_started",

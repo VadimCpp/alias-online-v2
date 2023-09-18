@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import type { RootState } from '../../store'
-import type { User } from '../../firebase'
+import type { User } from '../../types'
 
 /**
  * NOTE!

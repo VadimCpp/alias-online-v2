@@ -1,11 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { User, Room } from '../../firebase'
-
-export interface RoomState {
-  rooms: Room[],
-  users: User[],
-}
+import type { User, Room, RoomState } from '../../types'
 
 const initialState: RoomState = {
   rooms: [],

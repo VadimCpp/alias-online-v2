@@ -2,7 +2,7 @@ import React from 'react'
 import { useSelector } from 'react-redux'
 import { QuestionMarkCircleIcon } from '@heroicons/react/20/solid'
 import type { RootState } from '../store'
-import type { User, Room } from '../firebase'
+import type { User, Room } from '../types'
 
 const GuessTheCard: React.FC = () => {
   const room: Room | null = useSelector((state: RootState) => state.game.room)
