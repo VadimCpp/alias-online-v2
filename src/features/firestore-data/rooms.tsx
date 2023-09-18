@@ -3,6 +3,12 @@ import { useSelector } from 'react-redux'
 import type { RootState } from '../../store'
 import type { Room } from '../../firebase'
 
+/**
+ * NOTE!
+ * This component is developed for DEBUG.
+ * It shows all rooms from firestore.
+ * @returns react component
+ */
 const Rooms: React.FC = () => {
   const rooms = useSelector((state: RootState) => state.firestore.rooms)
 

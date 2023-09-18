@@ -4,14 +4,14 @@ import { UserIcon } from '@heroicons/react/20/solid'
 import type { RootState } from '../../store'
 
 const User: React.FC = () => {
-  const name: string = useSelector((state: RootState) => state.user.displayName)
+  const name: string | null = useSelector((state: RootState) => state.user.displayName)
   const isLogged: boolean = useSelector((state: RootState) => state.user.isLogged)
-  const photoURL: string = useSelector((state: RootState) => state.user.photoURL)
+  const photoURL: string | null = useSelector((state: RootState) => state.user.photoURL)
 
   return (
     <div className="p-4 w-64 mx-auto">
       <div className="text-center">
-        { isLogged ?
+        { isLogged && name && photoURL ?
           <img width="24" height="24"
             src={photoURL}
             alt={`Avatar of ${name}`}

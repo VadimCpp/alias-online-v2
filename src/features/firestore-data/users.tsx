@@ -3,6 +3,12 @@ import { useSelector } from 'react-redux'
 import type { RootState } from '../../store'
 import type { User } from '../../firebase'
 
+/**
+ * NOTE!
+ * This component is developed for DEBUG.
+ * It shows all users from firestore.
+ * @returns react component
+ */
 const Users: React.FC = () => {
   const users = useSelector((state: RootState) => state.firestore.users)
 

@@ -2,9 +2,12 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { initializeApp } from "firebase/app"
 import { GoogleAuthProvider, signInWithPopup, getAuth, onAuthStateChanged } from "firebase/auth"
-import { getFirestore, collection, onSnapshot } from "firebase/firestore"
+import { getFirestore, collection, onSnapshot, doc, updateDoc, setDoc } from "firebase/firestore"
+import type { UserCredential, User as AuthUser } from 'firebase/auth'
 
-import { setName, setPhotoURL, setStatus } from './features/user/user-slice'
+import type { Card } from './types'
+import Vocabulary from './assets/vocabulary.json'
+import { setName, setPhotoURL, setStatus, setUid } from './features/user/user-slice'
 import { setRooms, setUsers } from './features/firestore-data/firestore-data-slice'
 import { setRoom, setPlayers, setState, GameState } from './features/game/game-slice'
 import type { RootState } from './store'
@@ -51,10 +54,34 @@ export interface Room {
 }
 
 export const signInWithGoogle = async (): Promise<void> => {
+  let signInSuccess: boolean = false
+  let signInResult: UserCredential | null = null
+
   try {
-    await signInWithPopup(auth, googleProvider)
+    signInResult = await signInWithPopup(auth, googleProvider)
+    signInSuccess = true
   } catch (err: any) {
     console.error("Error while signing in.", err)
+  }
+
+  if (signInSuccess && signInResult) {
+    try {
+      const user: AuthUser = signInResult.user;
+      const userDoc = {
+        uid: user.uid,
+        displayName: user.displayName,
+        photoURL: user.photoURL,
+        score: 0,
+        lastActiveAt: +(new Date()),
+        role: 'spiller',
+        isActive: true,
+        greeting: false,
+        room: "norsk-room",
+      };
+      await setDoc(doc(db, "users", user.uid), userDoc);
+    } catch (err) {
+      console.error("Error setting the document for signed in used.", err);
+    }
   }
 }
 
@@ -66,11 +93,52 @@ export const signOut = async (): Promise<void> => {
   }
 }
 
+/**
+ * TODO: move this game logic to separate file, e.g. utils.ts
+ */
+const getRandomCard = (): Card => {
+  const wordsWithEmoji: Card[] = Vocabulary.filter(w => !!w['emoji']);
+  const randomIndex: number = Math.ceil(Math.random() * (wordsWithEmoji.length-1));
+  return wordsWithEmoji[randomIndex];
+}
+
+/**
+ * TODO: move this game logic to separate file, e.g. utils.ts
+ */
+const isActive = (user: User): boolean => {
+  if (!user?.lastActiveAt) {
+    return false;
+  }
+  const today: Date = new Date();
+  const lastActiveAt: Date = new Date(user?.lastActiveAt);
+  const lastActiveHoursAgo: number = (+today - +lastActiveAt) / 1000 / 60 / 60;
+  return (lastActiveHoursAgo < 1);
+}
+
+export const startNewGame = async (room: Room, user: User): Promise<void> => {
+  try {
+    const roomRef = doc(db, "rooms", room.uid);
+    await updateDoc(roomRef, {
+      leaderUid: user.uid,
+      leaderName: user.displayName,
+      leaderTimestamp: +(new Date()),
+      winnerUid: null,
+      winnerName: null,
+      winnerTimestamp: null,
+      word: getRandomCard().no,
+    });
+  } catch (err: any) {
+    console.error("Error while starting new game.", err)
+  }
+}
+
 export const useFirebase = () => {
   const dispatch = useDispatch()
   const isLogged: boolean = useSelector((state: RootState) => state.user.isLogged)
+  const uid: string | null = useSelector((state: RootState) => state.user.uid)
   const rooms: Room[] = useSelector((state: RootState) => state.firestore.rooms)
   const users: User[] = useSelector((state: RootState) => state.firestore.users)
+  const room: Room | null = useSelector((state: RootState) => state.game.room)
 
   /**
    * Effect for updating user state on auth state change
@@ -78,9 +146,10 @@ export const useFirebase = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, authUser => {
       console.log("Auth state changed. Updating user: ", authUser)
-      dispatch(setName(authUser?.displayName ? authUser.displayName : ""))
+      dispatch(setName(authUser?.displayName ? authUser.displayName : null))
       dispatch(setStatus(authUser ? true : false))
-      dispatch(setPhotoURL(authUser?.photoURL ? authUser.photoURL : ""))
+      dispatch(setPhotoURL(authUser?.photoURL ? authUser.photoURL : null))
+      dispatch(setUid(authUser?.uid ? authUser.uid : null))
     })
     return () => unsubscribe()
   }, [dispatch])
@@ -120,7 +189,7 @@ export const useFirebase = () => {
   }, [dispatch, isLogged])
 
   /**
-   * Effect for updating current room info.
+   * Effect for updating current room.
    * 
    * NOTE!
    * Only one room with uid "norsk-room" is supported.
@@ -128,14 +197,36 @@ export const useFirebase = () => {
   useEffect(() => {
     if (rooms.length === 1 && rooms[0].uid === "norsk-room") {
       dispatch(setRoom(rooms[0]))
-      dispatch(setPlayers(users.filter(user => user.room === "norsk-room")))
-      dispatch(setState(GameState.NotStarted))
     } else {
       dispatch(setRoom(null))
-      dispatch(setPlayers([]))
-      dispatch(setState(null))
     }
   }, [dispatch, rooms, users])
+
+  /**
+   * Effect for updating current room's players.
+   */
+  useEffect(() => {
+    dispatch(setPlayers(room ? users.filter(user => isActive(user) && user.room === room.uid) : []))
+  }, [dispatch, room])
+
+  /**
+   * Effect for updating current room's state.
+   */
+  useEffect(() => {
+    if (room && !room?.leaderUid && !room?.winnerUid) {
+      dispatch(setState(GameState.NotStarted))
+    } else if (room?.leaderUid && uid && room?.leaderUid !== uid) {
+      dispatch(setState(GameState.Explaining))
+    } else if (room?.leaderUid && uid && room?.leaderUid === uid) {
+      dispatch(setState(GameState.YouExplaining))
+    } else if (room?.winnerUid && uid && room?.winnerUid !== uid) {
+      dispatch(setState(GameState.WaitForWinner))
+    } else if (room?.winnerUid && uid && room?.winnerUid === uid) {
+      dispatch(setState(GameState.YouWin))
+    } else {
+      dispatch(setState(null))
+    }
+  }, [dispatch, room])
 
   return null
 }

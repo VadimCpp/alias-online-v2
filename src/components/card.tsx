@@ -1,18 +1,8 @@
 import React from 'react';
+import type { Card } from '../types';
 import './card.css';
 
-interface CardProps {
-  id: number;
-  no?: string | null;
-  en?: string | null;
-  uk?: string | null;
-  emoji?: string | null;
-  ordbokene?: string | null;
-  naob?: string | null;
-  snl?: string | null;
-}
-
-const Card: React.FC<CardProps> = (card) => {
+const Card: React.FC<Card> = (card: Card) => {
   return (
     <div className="card">
       <p className="card__icon">{card.emoji || "?"}</p>

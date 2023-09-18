@@ -7,8 +7,8 @@ import { signInWithGoogle } from '../../firebase'
 
 const Welcome: React.FC = () => {
   const isLogged: boolean = useSelector((state: RootState) => state.user.isLogged)
-  const name: string = useSelector((state: RootState) => state.user.displayName)
-  const photoURL: string = useSelector((state: RootState) => state.user.photoURL)
+  const name: string | null = useSelector((state: RootState) => state.user.displayName)
+  const photoURL: string | null = useSelector((state: RootState) => state.user.photoURL)
 
   return (
     <div className="text-center">
@@ -28,7 +28,7 @@ const Welcome: React.FC = () => {
           </button>
         </>
       )}
-      { isLogged && (
+      { isLogged && photoURL && name && (
         <>
           <img width="24" height="24"
             src={photoURL}
