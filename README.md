@@ -30,4 +30,4 @@ For security reasons, you should store your Azure Storage connection string, sto
 
 ## Demo
 
-![screenshot](https://github.com/VadimCpp/alias-online-v2/assets/4641125/b6fcf555-d367-473b-9d3c-dd443278aa75)
+![image](https://github.com/VadimCpp/alias-online-v2/assets/4641125/5a89ef7d-0a6f-4585-8a1c-357f238aa8cc)
