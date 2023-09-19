@@ -1,20 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { PayloadAction } from '@reduxjs/toolkit'
-import type { User, Room } from '../../types'
-
-export enum GameState {
-  NotStarted = "not_started",
-  Explaining = "explaining",
-  ChooseWinner = "choose_winner",
-  YouExplaining = "you_explaining",
-  WaitForWinner = "wait_for_winner",
-  YouWin = "you_win"
-}
+import * as Types from '../../types'
 
 export interface RoomState {
-  room: Room | null,	
-  players: User[],
-  state: GameState | null,
+  room: Types.Room | null,	
+  players: Types.User[],
+  state: Types.GameState | null,
 }
 
 const initialState: RoomState = {
@@ -27,13 +18,13 @@ export const gameSlice = createSlice({
   name: 'game',
   initialState,
   reducers: {
-    setRoom: (state, action: PayloadAction<Room | null>) => {
+    setRoom: (state, action: PayloadAction<Types.Room | null>) => {
       state.room = action.payload
     },
-    setPlayers: (state, action: PayloadAction<User[]>) => {
+    setPlayers: (state, action: PayloadAction<Types.User[]>) => {
       state.players = action.payload
     },
-    setState: (state, action: PayloadAction<GameState | null>) => {
+    setState: (state, action: PayloadAction<Types.GameState | null>) => {
       state.state = action.payload
     }
   },

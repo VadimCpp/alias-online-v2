@@ -5,11 +5,11 @@ import { GoogleAuthProvider, signInWithPopup, getAuth, onAuthStateChanged } from
 import { getFirestore, collection, onSnapshot, doc, updateDoc, setDoc } from "firebase/firestore"
 import type { UserCredential, User as AuthUser } from 'firebase/auth'
 
-import type { Card, User, Room } from './types'
+import * as Types from './types'
 import Vocabulary from './assets/vocabulary.json'
 import { setName, setPhotoURL, setStatus, setUid } from './features/user/user-slice'
 import { setRooms, setUsers } from './features/firestore-data/firestore-data-slice'
-import { setRoom, setPlayers, setState, GameState } from './features/game/game-slice'
+import { setRoom, setPlayers, setState } from './features/game/game-slice'
 import type { RootState } from './store'
 
 
@@ -70,8 +70,8 @@ export const signOut = async (): Promise<void> => {
 /**
  * TODO: move this game logic to separate file, e.g. utils.ts
  */
-const getRandomCard = (): Card => {
-  const wordsWithEmoji: Card[] = Vocabulary.filter(w => !!w['emoji']);
+const getRandomCard = (): Types.Card => {
+  const wordsWithEmoji: Types.Card[] = Vocabulary.filter(w => !!w['emoji']);
   const randomIndex: number = Math.ceil(Math.random() * (wordsWithEmoji.length-1));
   return wordsWithEmoji[randomIndex];
 }
@@ -79,7 +79,7 @@ const getRandomCard = (): Card => {
 /**
  * TODO: move this game logic to separate file, e.g. utils.ts
  */
-const isActive = (user: User): boolean => {
+const isActive = (user: Types.User): boolean => {
   if (!user?.lastActiveAt) {
     return false;
   }
@@ -89,7 +89,7 @@ const isActive = (user: User): boolean => {
   return (lastActiveHoursAgo < 1);
 }
 
-export const startNewGame = async (room: Room, user: User): Promise<void> => {
+export const startNewGame = async (room: Types.Room, user: Types.User): Promise<void> => {
   try {
     const roomRef = doc(db, "rooms", room.uid);
     await updateDoc(roomRef, {
@@ -110,9 +110,9 @@ export const useFirebase = () => {
   const dispatch = useDispatch()
   const isLogged: boolean = useSelector((state: RootState) => state.user.isLogged)
   const uid: string | null = useSelector((state: RootState) => state.user.uid)
-  const rooms: Room[] = useSelector((state: RootState) => state.firestore.rooms)
-  const users: User[] = useSelector((state: RootState) => state.firestore.users)
-  const room: Room | null = useSelector((state: RootState) => state.game.room)
+  const rooms: Types.Room[] = useSelector((state: RootState) => state.firestore.rooms)
+  const users: Types.User[] = useSelector((state: RootState) => state.firestore.users)
+  const room: Types.Room | null = useSelector((state: RootState) => state.game.room)
 
   /**
    * Effect for updating user state on auth state change
@@ -136,7 +136,7 @@ export const useFirebase = () => {
     if (isLogged) {
       const roomsRef = collection(db, "rooms")
       unsubscribe = onSnapshot(roomsRef, (snapshot) => {
-        const rooms: Room[] = snapshot.docs.map((doc) => doc.data()) as Room[]
+        const rooms: Types.Room[] = snapshot.docs.map((doc) => doc.data()) as Types.Room[]
         dispatch(setRooms(rooms))
       }) 
     } else {
@@ -153,7 +153,7 @@ export const useFirebase = () => {
     if (isLogged) {
       const usersRef = collection(db, "users")
       unsubscribe = onSnapshot(usersRef, (snapshot) => {
-        const users: User[] = snapshot.docs.map((doc) => doc.data()) as User[]
+        const users: Types.User[] = snapshot.docs.map((doc) => doc.data()) as Types.User[]
         dispatch(setUsers(users))
       }) 
     } else {
@@ -191,15 +191,15 @@ export const useFirebase = () => {
   useEffect(() => {
     console.log("Updating game state")
     if (room && !room?.leaderUid && !room?.winnerUid) {
-      dispatch(setState(GameState.NotStarted))
+      dispatch(setState(Types.GameState.NotStarted))
     } else if (room?.leaderUid && uid && room?.leaderUid !== uid) {
-      dispatch(setState(GameState.Explaining))
+      dispatch(setState(Types.GameState.Explaining))
     } else if (room?.leaderUid && uid && room?.leaderUid === uid) {
-      dispatch(setState(GameState.YouExplaining))
+      dispatch(setState(Types.GameState.YouExplaining))
     } else if (room?.winnerUid && uid && room?.winnerUid !== uid) {
-      dispatch(setState(GameState.WaitForWinner))
+      dispatch(setState(Types.GameState.WaitForWinner))
     } else if (room?.winnerUid && uid && room?.winnerUid === uid) {
-      dispatch(setState(GameState.YouWin))
+      dispatch(setState(Types.GameState.YouWin))
     } else {
       dispatch(setState(null))
     }

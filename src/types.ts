@@ -39,3 +39,12 @@ export interface RoomState {
   rooms: Room[],
   users: User[],
 }
+
+export enum GameState {
+  NotStarted = "not_started",
+  Explaining = "explaining",
+  ChooseWinner = "choose_winner",
+  YouExplaining = "you_explaining",
+  WaitForWinner = "wait_for_winner",
+  YouWin = "you_win"
+}
