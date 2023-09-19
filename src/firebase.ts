@@ -106,6 +106,19 @@ export const startNewGame = async (room: Types.Room, user: Types.User): Promise<
   }
 }
 
+export const updateUserWhenGoToRoom = async (room: Types.Room, user: Types.User): Promise<void> => {
+  try {
+    const userRef = doc(db, "users", user.uid);
+    await updateDoc(userRef, {
+      room: room.uid,
+      lastActiveAt: +(new Date()),
+      greeting: false,
+    });
+  } catch (err: any) {
+    console.error("Error while updating user going to the room.", err)
+  }
+}
+
 export const useFirebase = () => {
   const dispatch = useDispatch()
   const isLogged: boolean = useSelector((state: RootState) => state.user.isLogged)
@@ -181,7 +194,6 @@ export const useFirebase = () => {
    * Effect for updating current room's players.
    */
   useEffect(() => {
-    console.log("Updating players for room")
     dispatch(setPlayers(room ? users.filter(user => isActive(user) && user.room === room.uid) : []))
   }, [dispatch, room, users])
 
@@ -189,7 +201,6 @@ export const useFirebase = () => {
    * Effect for updating current room's state.
    */
   useEffect(() => {
-    console.log("Updating game state")
     if (room && !room?.leaderUid && !room?.winnerUid) {
       dispatch(setState(Types.GameState.NotStarted))
     } else if (room?.leaderUid && uid && room?.leaderUid !== uid) {
@@ -203,7 +214,7 @@ export const useFirebase = () => {
     } else {
       dispatch(setState(null))
     }
-  }, [dispatch, room, uid])
+  }, [dispatch, room])
 
   return null
 }

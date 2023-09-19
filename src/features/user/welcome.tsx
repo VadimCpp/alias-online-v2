@@ -3,12 +3,17 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { GlobeAltIcon } from '@heroicons/react/20/solid'
 import type { RootState } from '../../store'
-import { signInWithGoogle } from '../../firebase'
+import * as Types from '../../types'
+import { signInWithGoogle, updateUserWhenGoToRoom } from '../../firebase'
 
 const Welcome: React.FC = () => {
   const isLogged: boolean = useSelector((state: RootState) => state.user.isLogged)
   const name: string | null = useSelector((state: RootState) => state.user.displayName)
+  const uid: string | null = useSelector((state: RootState) => state.user.uid)
   const photoURL: string | null = useSelector((state: RootState) => state.user.photoURL)
+  const room: Types.Room | null = useSelector((state: RootState) => state.game.room)
+  const users: Types.User[] = useSelector((state: RootState) => state.firestore.users)
+  const user: Types.User | undefined = users.find((u) => u.uid === uid)
 
   return (
     <div className="text-center">
@@ -39,7 +44,11 @@ const Welcome: React.FC = () => {
           <p className="mb-8 mt-4">Press "Play" button to open the playing room</p>
           <Link to="/room"
             className="rounded-md border border-transparent bg-blue-100 px-4 mt-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-            onClick={() => { console.log('room') }} 
+            onClick={async () => { 
+              if (room && user) {
+                await updateUserWhenGoToRoom(room, user)
+              }
+            }}
           >
             Play
           </Link>
