@@ -119,6 +119,27 @@ export const updateUserWhenGoToRoom = async (room: Types.Room, user: Types.User)
   }
 }
 
+export const setRoomWinner = async (room: Types.Room, winner: Types.User): Promise<void> => {
+  const roomRef = doc(db, "rooms", room.uid);
+  await updateDoc(roomRef, {
+    winnerUid: winner.uid,
+    winnerName: winner.displayName,
+    winnerTimestamp: +(new Date()),
+    leaderUid: null,
+    leaderName: null,
+    leaderTimestamp: null,
+  });
+}
+
+export const updateWinnerScore = async (winner: Types.User) => {
+  const userRef = doc(db, "users", winner.uid);
+  await updateDoc(userRef, {
+    score: winner.score + 1,
+    lastActiveAt: +(new Date()),
+    greeting: false,
+  });
+}
+
 export const useFirebase = () => {
   const dispatch = useDispatch()
   const isLogged: boolean = useSelector((state: RootState) => state.user.isLogged)
