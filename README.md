@@ -1,4 +1,4 @@
-# React + Redux + TypeScript + Vite + TailwindCSS + Azure
+# React + Redux + TypeScript + Vite + TailwindCSS + Azure + Firebase
 
 > Visit the webpage: https://aliasonlinestorageacc.z1.web.core.windows.net/
 
