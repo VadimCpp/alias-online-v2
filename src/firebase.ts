@@ -46,7 +46,7 @@ export const signInWithGoogle = async (): Promise<void> => {
         displayName: user.displayName,
         photoURL: user.photoURL,
         score: 0,
-        lastActiveAt: +(new Date()),
+        lastActiveAt: Date.now(),
         role: 'spiller',
         isActive: true,
         greeting: false,
@@ -95,7 +95,7 @@ export const startNewGame = async (room: Types.Room, user: Types.User): Promise<
     await updateDoc(roomRef, {
       leaderUid: user.uid,
       leaderName: user.displayName,
-      leaderTimestamp: +(new Date()),
+      leaderTimestamp: Date.now(),
       winnerUid: null,
       winnerName: null,
       winnerTimestamp: null,
@@ -111,7 +111,7 @@ export const updateUserWhenGoToRoom = async (room: Types.Room, user: Types.User)
     const userRef = doc(db, "users", user.uid);
     await updateDoc(userRef, {
       room: room.uid,
-      lastActiveAt: +(new Date()),
+      lastActiveAt: Date.now(),
       greeting: false,
     });
   } catch (err: any) {
@@ -124,7 +124,7 @@ export const setRoomWinner = async (room: Types.Room, winner: Types.User): Promi
   await updateDoc(roomRef, {
     winnerUid: winner.uid,
     winnerName: winner.displayName,
-    winnerTimestamp: +(new Date()),
+    winnerTimestamp: Date.now(),
     leaderUid: null,
     leaderName: null,
     leaderTimestamp: null,
@@ -135,7 +135,7 @@ export const updateWinnerScore = async (winner: Types.User) => {
   const userRef = doc(db, "users", winner.uid);
   await updateDoc(userRef, {
     score: winner.score + 1,
-    lastActiveAt: +(new Date()),
+    lastActiveAt: Date.now(),
     greeting: false,
   });
 }
