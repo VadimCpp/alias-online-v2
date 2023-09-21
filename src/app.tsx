@@ -6,10 +6,10 @@ import Profile from './screens/profile'
 import Room from './screens/room'
 import Word from './screens/word'
 import Header from './components/header'
-import { useFirebase } from './firebase'
+import useGameLogic from './game-logic'
 
 const App: React.FC = () => {
-  useFirebase();
+  useGameLogic();
 
   return (
     <Router>
