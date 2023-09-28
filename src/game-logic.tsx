@@ -8,7 +8,7 @@ import { setName, setPhotoURL, setStatus, setUid } from './features/user/user-sl
 import { setRooms, setUsers } from './features/firestore-data/firestore-data-slice'
 import { setRoom, setPlayers, setState } from './features/game/game-slice'
 import type { RootState } from './store'
-import { db, auth, resetLeader, resetWinner } from './firebase'
+import { db, auth } from './firebase'
 
 /**
  * Function for checking if user is active.
@@ -36,7 +36,6 @@ const useGameLogic = () => {
   const users: Types.User[] = useSelector((state: RootState) => state.firestore.users)
   // game
   const room: Types.Room | null = useSelector((state: RootState) => state.game.room)
-  const players: Types.User[] = useSelector((state: RootState) => state.game.players)
 
 
   /**
@@ -128,23 +127,6 @@ const useGameLogic = () => {
     }
   }, [dispatch, room])
 
-  /**
-   * Effect checking if leader and/or winner is still in the room. It resets the game if not.
-   */
-  useEffect(() => {
-    const leaderUid: string | undefined = room?.leaderUid
-    const winnerUid: string | undefined = room?.winnerUid
-    const leader: Types.User | undefined = leaderUid ? players.find(p => p.uid === leaderUid) : undefined
-    const winner: Types.User | undefined = winnerUid ? players.find(p => p.uid === winnerUid) : undefined
-    if (room && !leader) {
-      resetLeader(room);
-    }
-    if (room && !winner) {
-      resetWinner(room);
-    }
-  }, [dispatch, players])
-
-    
   return null
 }
 
