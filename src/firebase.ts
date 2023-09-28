@@ -153,3 +153,19 @@ export const resetWinner = async (room: Types.Room) => {
     console.error("Error while resetting the leader.", err)
   }
 }
+
+export const resetGame = async (room: Types.Room) => {
+  try {
+    const roomRef = doc(db, "rooms", room.uid);
+    await updateDoc(roomRef, {
+      leaderUid: null,
+      leaderName: null,
+      leaderTimestamp: null,
+      winnerUid: null,
+      winnerName: null,
+      winnerTimestamp: null,
+    });
+  } catch (err: any) {
+    console.error("Error while resetting the leader.", err)
+  }
+}
