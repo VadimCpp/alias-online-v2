@@ -6,8 +6,7 @@ import {
   UserIcon,
   HomeIcon,
   VideoCameraIcon,
-  BookOpenIcon,
-  ChatBubbleOvalLeftEllipsisIcon
+  QuestionMarkCircleIcon
 } from '@heroicons/react/20/solid'
 
 const Dropdown: React.FC = () => {
@@ -110,47 +109,24 @@ const Dropdown: React.FC = () => {
             <div className="px-1 py-1">
               <Menu.Item>
                 {({ active }) => (
-                  <Link to="/dictionary"
+                  <Link to="/about"
                     className={`${
                       active ? 'bg-violet-500 text-white' : 'text-gray-900'
                     } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                    onClick={() => { console.log('dictionary') }}
+                    onClick={() => { console.log('about') }}
                   >
                     {active ? (
-                      <BookOpenIcon
+                      <QuestionMarkCircleIcon
                         className="mr-2 h-5 w-5 text-violet-400 hover:text-violet-100"
                         aria-hidden="true"
                       />
                     ) : (
-                      <BookOpenIcon
+                      <QuestionMarkCircleIcon
                         className="mr-2 h-5 w-5 text-violet-400 hover:text-violet-100"
                         aria-hidden="true"
                       />
                     )}
-                    Dictionary
-                  </Link>
-                )}
-              </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <Link to="/word"
-                    className={`${
-                      active ? 'bg-violet-500 text-white' : 'text-gray-900'
-                    } group flex w-full items-center rounded-md px-2 py-2 text-sm`}
-                    onClick={() => { console.log('word') }}
-                  >
-                    {active ? (
-                      <ChatBubbleOvalLeftEllipsisIcon
-                        className="mr-2 h-5 w-5 text-violet-400 hover:text-violet-100"
-                        aria-hidden="true"
-                      />
-                    ) : (
-                      <ChatBubbleOvalLeftEllipsisIcon
-                        className="mr-2 h-5 w-5 text-violet-400 hover:text-violet-100"
-                        aria-hidden="true"
-                      />
-                    )}
-                    Word
+                    About
                   </Link>
                 )}
               </Menu.Item>

@@ -4,7 +4,7 @@ import Dictionary from './screens/dictionary'
 import Home from './screens/home'
 import Profile from './screens/profile'
 import Room from './screens/room'
-import Word from './screens/word'
+import About from './screens/about'
 import Header from './components/header'
 import useGameLogic from './game-logic'
 
@@ -19,7 +19,7 @@ const App: React.FC = () => {
         <Route path="/dictionary" element={<Dictionary />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/room" element={<Room />} />
-        <Route path="/word" element={<Word />} />
+        <Route path="/about" element={<About />} />
       </Routes>
     </Router>
   )
