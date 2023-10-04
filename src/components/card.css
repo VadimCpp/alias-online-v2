@@ -1,13 +1,17 @@
 
   .card {
-    @apply w-52 h-80 border rounded-xl border-gray-300 mx-auto mb-8
+    @apply w-52 h-80 border rounded-xl border-gray-300 mx-auto mb-8 relative
   }
 
   .card__icon {
-    @apply leading-loose text-9xl text-center
+    @apply leading-loose text-8xl text-center
+  }
+
+  .card__label-wrap {
+    @apply text-center text-lg bg-amber-400 absolute bottom-6 left-0 right-0
   }
 
   .card__label {
-    @apply text-center text-lg leading-10 bg-amber-400
+    @apply leading-8
   }
 
