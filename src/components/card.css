@@ -15,3 +15,6 @@
     @apply leading-8
   }
 
+  .card__id {
+    @apply text-center text-gray-400 text-sm absolute top-2 right-2
+  }

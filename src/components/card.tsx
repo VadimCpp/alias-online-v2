@@ -11,6 +11,7 @@ const Card: React.FC<Card> = (card: Card) => {
         <p className="card__label">{card.en || "-"}</p>
         <p className="card__label">{card.uk || "-"}</p>
       </div>
+      <p className='card__id'>{card.id}</p>
     </div>  
   );
 };
