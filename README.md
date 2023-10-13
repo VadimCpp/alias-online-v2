@@ -42,4 +42,10 @@ az storage container create --name smallimages --account-name imagesstorageacc
 
 ## Demo
 
+New design:
+
+![Skjermbilde 2023-10-13 235949](https://github.com/VadimCpp/alias-online-v2/assets/4641125/7ee78b69-a953-44e8-9c6e-b4791ff73c5b)
+
+Old school emoji:
+
 ![image](https://github.com/VadimCpp/alias-online-v2/assets/4641125/5a89ef7d-0a6f-4585-8a1c-357f238aa8cc)
