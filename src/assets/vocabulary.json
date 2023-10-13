@@ -22,8 +22,8 @@
   { "id": 20, "no": "Glidelås", "en": "Zipper", "uk": "Блискавка", "emoji": null, "ordbokene": "https://ordbokene.no/bm/20249/glidel%C3%A5s", "naob": "https://naob.no/ordbok/glidel%C3%A5s", "snl": "https://snl.no/glidel%C3%A5s" },
 
   { "id": 21, "no": "Forstørrelsesglass", "en": "Magnifying glass", "uk": "Лупа", "emoji": "🔍", "ordbokene": "https://ordbokene.no/bm/16989/forst%C3%B8rrelsesglass", "naob": "https://naob.no/ordbok/forst%C3%B8rrelsesglass", "snl": "https://snl.no/lupe" },
-  { "id": 22 },
-  { "id": 23 },
+
+
   { "id": 24, "no": "Fotoapparat", "en": "Fotoapparat", "uk": "Фотоапарат", "emoji": "📷", "ordbokene": "https://ordbokene.no/bm/17368/fotoapparat", "naob": "https://naob.no/ordbok/fotoapparat", "snl": null },
   { "id": 25, "no": "Briller", "en": "Glasses", "uk": "Окуляри", "emoji": "👓", "ordbokene": "https://ordbokene.no/bm/7531/brille", "naob": "https://naob.no/ordbok/briller", "snl": "https://snl.no/briller" },
   { "id": 26, "no": "Sverd", "en": "Sword", "uk": "Меч", "emoji": "🗡", "ordbokene": "https://ordbokene.no/bm/58674/sverd", "naob": "https://naob.no/ordbok/sverd", "snl": "https://snl.no/sverd" },

@@ -28,6 +28,18 @@ The website is being deployed automatically on `git push`. See file `.github/wor
 
 For security reasons, you should store your Azure Storage connection string, storage account and container name as a secrets in your GitHub repository. To add this secret, go to your repository settings, then "Secrets," and create a new secrets with the corresponding names.
 
+## Images
+
+```bash
+
+# Creare new storage account
+az storage account create --name imagesstorageacc --resource-group alias-online-v2 --location norwayeast --sku Standard_LRS
+
+# Create container for small images
+az storage container create --name smallimages --account-name imagesstorageacc
+
+```
+
 ## Demo
 
 ![image](https://github.com/VadimCpp/alias-online-v2/assets/4641125/5a89ef7d-0a6f-4585-8a1c-357f238aa8cc)
