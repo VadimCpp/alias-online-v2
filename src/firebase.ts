@@ -64,9 +64,11 @@ export const signOut = async (): Promise<void> => {
  * TODO: move this game logic to separate file, e.g. utils.ts
  */
 const getRandomCard = (): Types.Card => {
-  const wordsWithEmoji: Types.Card[] = Vocabulary.filter(w => !!w['emoji']);
-  const randomIndex: number = Math.ceil(Math.random() * (wordsWithEmoji.length-1));
-  return wordsWithEmoji[randomIndex];
+  // NOTE! Emoji cards are not used anymore, but keeping this code for now.
+  // TODO: remove this code when emoji cards are not used anymore.
+  //const wordsWithEmoji: Types.Card[] = Vocabulary.filter(w => !!w['emoji']);
+  const randomIndex: number = Math.ceil(Math.random() * (Vocabulary.length-1));
+  return Vocabulary[randomIndex];
 }
 
 export const startNewGame = async (room: Types.Room, user: Types.User): Promise<void> => {
@@ -167,5 +169,16 @@ export const resetGame = async (room: Types.Room) => {
     });
   } catch (err: any) {
     console.error("Error while resetting the leader.", err)
+  }
+}
+
+export const resetCard = async (room: Types.Room) => {
+  try {
+    const roomRef = doc(db, "rooms", room.uid);
+    await updateDoc(roomRef, {
+      word: getRandomCard().no,
+    });
+  } catch (err: any) {
+    console.error("Error while resetting a card.", err)
   }
 }
