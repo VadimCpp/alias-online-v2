@@ -61,7 +61,7 @@
   { "id": 55, "no": "Slikkepinne", "en": "Lollipop", "uk": "Льодяник", "emoji": "🍭", "ordbokene": null, "naob": "https://naob.no/ordbok/slikkepinne", "snl": null },
   { "id": 56, "no": "Kleshenger", "en": "Coat hanger", "uk": "Вішалка для одягу", "emoji": null, "ordbokene": "https://ordbokene.no/bm/30069/kleshenger", "naob": "https://naob.no/ordbok/kleshenger", "snl": null },
   { "id": 57, "no": "Stekepanne", "en": "Frying pan", "uk": "Сковорода", "emoji": null, "ordbokene": "https://ordbokene.no/bm/56954/stekepanne", "naob": "https://naob.no/ordbok/stekepanne", "snl": null },
-  { "id": 58, "no": "Solbriller", "en": "Sunglasses", "uk": "Окуляри для сонця", "emoji": "🕶", "ordbokene": "https://ordbokene.no/bm/55447/solbrille", "naob": "https://naob.no/ordbok/solbrille", "snl": "https://sml.snl.no/solbriller" },
+  { "id": 58, "no": "Solbriller", "en": "Sunglasses", "uk": "Сонцезахисні окуляри", "emoji": "🕶", "ordbokene": "https://ordbokene.no/bm/55447/solbrille", "naob": "https://naob.no/ordbok/solbrille", "snl": "https://sml.snl.no/solbriller" },
   { "id": 59, "no": "Søppelbøtte", "en": "Rubbish bin", "uk": "Смітник", "emoji": "🗑", "ordbokene": null, "naob": "https://naob.no/ordbok/s%C3%B8ppelb%C3%B8tte", "snl": null },
   { "id": 60, "no": "Sikkerhetsnål", "en": "Safety pin", "uk": "Шпилька", "emoji": "🧷", "ordbokene": "https://ordbokene.no/bm/51425/sikkerhetsn%C3%A5l", "naob": "https://naob.no/ordbok/sikkerhetsn%C3%A5l", "snl": null },
 
@@ -131,7 +131,7 @@
   { "id": 119, "no": "Ryggsekk", "en": "Backpack", "uk": "Рюкзак", "emoji": "🎒", "ordbokene": "", "naob": "", "snl": "" },
   { "id": 120, "no": "Magnet", "en": "Magnet", "uk": "Магніт", "emoji": "🧲", "ordbokene": "", "naob": "", "snl": "" },
 
-  { "id": 121, "no": "Kasserolle", "en": "Casserole", "uk": "Каструля", "emoji": "🍲", "ordbokene": "", "naob": "", "snl": "" },
+  { "id": 121, "no": "Kasserolle", "en": "Casserole", "uk": "Каструля для запікання", "emoji": "🍲", "ordbokene": "", "naob": "", "snl": "" },
   { "id": 122, "no": "Forkle", "en": "Apron", "uk": "Фартук", "emoji": "👗", "ordbokene": "", "naob": "", "snl": "" },
   { "id": 123, "no": "Stein", "en": "Stone", "uk": "Камінь", "emoji": "🪨", "ordbokene": "", "naob": "", "snl": "" },
   { "id": 124, "no": "Symaskin", "en": "Sewing machine", "uk": "Швейна машина", "emoji": "", "ordbokene": "", "naob": "", "snl": "" },
@@ -173,7 +173,7 @@
   { "id": 157, "no": "Neshorn", "en": "Rhinoceros", "uk": "Носоріг", "emoji": "🦏", "ordbokene": "", "naob": "", "snl": "" },
   { "id": 158, "no": "Appelsin", "en": "Orange", "uk": "Апельсин", "emoji": "🍊", "ordbokene": "", "naob": "", "snl": "" },
   { "id": 159, "no": "Jakke", "en": "Jacket", "uk": "Куртка", "emoji": "🧥", "ordbokene": "", "naob": "", "snl": "" },
-  { "id": 160, "no": "Rullestol", "en": "Wheelchair", "uk": "Інвалідне візка", "emoji": "♿️", "ordbokene": "", "naob": "", "snl": "" },
+  { "id": 160, "no": "Rullestol", "en": "Wheelchair", "uk": "Інвалідний візок", "emoji": "♿️", "ordbokene": "", "naob": "", "snl": "" },
 
   { "id": 161, "no": "Campingvogn", "en": "Caravan", "uk": "Караван", "emoji": "🚐", "ordbokene": "", "naob": "", "snl": "" },
   { "id": 162, "no": "Bjørn", "en": "Bear", "uk": "Ведмідь", "emoji": "🐻", "ordbokene": "", "naob": "", "snl": "" },
@@ -205,7 +205,7 @@
   { "id": 186, "no": "Sko", "en": "Shoes", "uk": "Взуття", "emoji": "👟", "ordbokene": "", "naob": "", "snl": "" },
   { "id": 187, "no": "Skiftenøkkel", "en": "Wrench", "uk": "Гайковий ключ", "emoji": "🔧", "ordbokene": "", "naob": "", "snl": "" },
   { "id": 188, "no": "Blyant", "en": "Pencil", "uk": "Олівець", "emoji": "✏️", "ordbokene": "", "naob": "", "snl": "" },
-  { "id": 189, "no": "Barnevogn", "en": "Stroller", "uk": "Коляска для дитини", "emoji": "", "ordbokene": "", "naob": "", "snl": "" },
+  { "id": 189, "no": "Barnevogn", "en": "Stroller", "uk": "Дитячий візок", "emoji": "", "ordbokene": "", "naob": "", "snl": "" },
   { "id": 190, "no": "Skjell", "en": "Shell", "uk": "Мушля", "emoji": "🐚", "ordbokene": "", "naob": "", "snl": "" },
 
   { "id": 191, "no": "Golfball", "en": "Golf ball", "uk": "М'яч для гольфу", "emoji": "⛳", "ordbokene": "", "naob": "", "snl": "" },
@@ -256,7 +256,7 @@
   { "id": 232, "no": "Dekk", "en": "Tire", "uk": "Шина", "emoji": null, "ordbokene": "https://ordbokene.no/bm/9538/dekk", "naob": "https://naob.no/ordbok/dekk_1", "snl": "https://snl.no/bildekk" },
   { "id": 233, "no": "Kjetting", "en": "Chain", "uk": "Ланцюг", "emoji": "⛓", "ordbokene": "https://ordbokene.no/bm/29648/kjetting", "naob": "https://naob.no/ordbok/kjetting", "snl": "https://snl.no/kjetting" },
   { "id": 234, "no": "Sjokolade", "en": "Chocolate", "uk": "Шоколад", "emoji": "🍫", "ordbokene": "https://ordbokene.no/bm/51980/sjokolade", "naob": "https://naob.no/ordbok/sjokolade", "snl": "https://snl.no/sjokolade" },
-  { "id": 235, "no": "Sitron", "en": "", "uk": "Лимон", "emoji": "🍋", "ordbokene": "https://ordbokene.no/bm/51751/sitron", "naob": "https://naob.no/ordbok/sitron", "snl": "https://snl.no/sitron" },
+  { "id": 235, "no": "Sitron", "en": "Lemon", "uk": "Лимон", "emoji": "🍋", "ordbokene": "https://ordbokene.no/bm/51751/sitron", "naob": "https://naob.no/ordbok/sitron", "snl": "https://snl.no/sitron" },
   { "id": 236, "no": "Kaffetrakter", "en": "Coffee machine", "uk": "Кавоварка", "emoji": null, "ordbokene": "https://ordbokene.no/bm/28179/kaffetrakter", "naob": "https://naob.no/ordbok/kaffetrakter", "snl": "https://snl.no/kaffetrakter" },
   { "id": 237, "no": "Helikopter", "en": "Helicopter", "uk": "Гелікоптер", "emoji": "🚁", "ordbokene": "https://ordbokene.no/bm/23000/helikopter", "naob": "https://naob.no/ordbok/helikopter", "snl": "https://snl.no/helikopter" },
   { "id": 238, "no": "Isbjørn", "en": "Polar bear", "uk": "Білий ведмідь", "emoji": null, "ordbokene": "https://ordbokene.no/bm/27198/isbj%C3%B8rn", "naob": "https://naob.no/ordbok/isbj%C3%B8rn", "snl": "https://snl.no/isbj%C3%B8rn" },
