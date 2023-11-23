@@ -4,11 +4,16 @@ import { ClockIcon } from '@heroicons/react/20/solid'
 import type { RootState } from '../store'
 import * as Types from '../types'
 import ResetGame from './reset-game'
+import { resetWinner } from '../firebase'
 
 const WaitForWinner: React.FC = () => {
   const room: Types.Room | null = useSelector((state: RootState) => state.game.room)
   const players: Types.User[] = useSelector((state: RootState) => state.game.players)
   const winner: Types.User | undefined = room ? players.find((player: Types.User) => player.uid === room.winnerUid) : undefined
+
+  if (room && !winner) {
+    resetWinner(room)
+  }
 
   if (!room || !winner) {
     return null
