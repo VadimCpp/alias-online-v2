@@ -11,7 +11,7 @@ import {
 
 const Dropdown: React.FC = () => {
   return (
-    <div className="w-56 text-right absolute right-10 top-6">
+    <div className="w-56 text-right absolute right-10 top-6 z-10">
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex w-full justify-center rounded-md bg-white bg-opacity-40 px-4 py-2 text-sm font-medium text-black hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75">

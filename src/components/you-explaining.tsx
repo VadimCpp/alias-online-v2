@@ -1,6 +1,6 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import Vocabulary from '../assets/vocabulary.json'
+import Vocabulary from '../vocabulary'
 import { setState } from '../features/game/game-slice'
 import type { RootState } from '../store'
 import * as Types from '../types'

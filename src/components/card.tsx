@@ -3,7 +3,11 @@ import type { Card } from '../types';
 import './card.css';
 
 const Card: React.FC<Card> = (card: Card) => {
-  const source = `https://imagesstorageacc.blob.core.windows.net/smallimages/${card.id}_small.png`
+  const BASE_URL = (import.meta.env.MODE === 'development') ?
+    "./test_images" :
+    "https://imagesstorageacc.blob.core.windows.net/smallimages"
+
+  const source = `${BASE_URL}/${card.id}_small.png`
   return (
     <div className="card">
       <img className="card__icon" src={source} />

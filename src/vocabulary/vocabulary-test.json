@@ -1,0 +1,7 @@
+[
+  { "id": 4, "no": "Snømann", "en": "Snowman", "uk": "Сніговик", "emoji": "⛄️", "ordbokene": "https://ordbokene.no/bm/55325/sn%C3%B8mann", "naob": "https://naob.no/ordbok/sn%C3%B8mann", "snl": null },
+  { "id": 5, "no": "Eple", "en": "Apple", "uk": "Яблуко", "emoji": "🍏", "ordbokene": "https://ordbokene.no/bm/12946/eple", "naob": "https://naob.no/ordbok/eple", "snl": "https://snl.no/eple" },
+  { "id": 126, "no": "Bringebær", "en": "Raspberry", "uk": "Малина", "emoji": "🍇", "ordbokene": "", "naob": "", "snl": "" },
+  { "id": 128, "no": "Kopp", "en": "Cup", "uk": "Чашка", "emoji": "☕", "ordbokene": "", "naob": "", "snl": "" },
+  { "id": 248, "no": "Katt", "en": "Cat", "uk": "Кіт", "emoji": "🐈", "ordbokene": "https://ordbokene.no/bm/29022/katt", "naob": "https://naob.no/ordbok/katt", "snl": "https://snl.no/katt" }
+]

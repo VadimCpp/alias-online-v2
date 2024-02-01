@@ -326,6 +326,5 @@
   { "id": 296, "no": "Hest", "en": "Horse", "uk": "Кінь", "emoji": "🐴", "ordbokene": "https://ordbokene.no/bm/23430/hest", "naob": "https://naob.no/ordbok/hest", "snl": "https://snl.no/hest" },
   { "id": 297, "no": "Delfin", "en": "Dolphin", "uk": "Дельфін", "emoji": "🐬", "ordbokene": "https://ordbokene.no/bm/9620/delfin", "naob": "https://naob.no/ordbok/delfin", "snl": "https://snl.no/delfiner" },
   { "id": 298, "no": "Kake", "en": "Cake", "uk": "Торт", "emoji": "🎂", "ordbokene": "https://ordbokene.no/bm/28203/kake", "naob": "https://naob.no/ordbok/kake_1", "snl": null },
-  { "id": 299, "no": "Varmluftballong", "en": "Hot air balloon", "uk": "Повітряна куля", "emoji": null, "ordbokene": null, "naob": "https://naob.no/ordbok/varmluftsballong", "snl": "https://snl.no/varmluftsballong" },
-  { "id": 300, "no": "Bil", "en": "Car", "uk": "Автомобіль", "emoji": "🚗", "ordbokene": "https://ordbokene.no/bm/5868/bil", "naob": "https://naob.no/ordbok/bil_3", "snl": "https://snl.no/bil" }
+  { "id": 299, "no": "Varmluftballong", "en": "Hot air balloon", "uk": "Повітряна куля", "emoji": null, "ordbokene": null, "naob": "https://naob.no/ordbok/varmluftsballong", "snl": "https://snl.no/varmluftsballong" }
 ]

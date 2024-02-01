@@ -4,7 +4,7 @@ import { getFirestore, doc, updateDoc, setDoc } from "firebase/firestore"
 import type { UserCredential, User as AuthUser } from 'firebase/auth'
 
 import * as Types from './types'
-import Vocabulary from './assets/vocabulary.json'
+import Vocabulary from './vocabulary'
 
 const googleProvider = new GoogleAuthProvider()
 const firebaseConfig = {
@@ -27,7 +27,7 @@ export const signInWithGoogle = async (): Promise<void> => {
   try {
     signInResult = await signInWithPopup(auth, googleProvider)
     signInSuccess = true
-  } catch (err: any) {
+  } catch (err) {
     console.error("Error while signing in.", err)
   }
 
@@ -55,7 +55,7 @@ export const signInWithGoogle = async (): Promise<void> => {
 export const signOut = async (): Promise<void> => {
   try {
     await auth.signOut()
-  } catch (err: any) {
+  } catch (err) {
     console.error("Error while signing out.", err)
   }
 }
@@ -83,7 +83,7 @@ export const startNewGame = async (room: Types.Room, user: Types.User): Promise<
       winnerTimestamp: null,
       word: getRandomCard().no,
     });
-  } catch (err: any) {
+  } catch (err) {
     console.error("Error while starting new game.", err)
   }
 }
@@ -96,7 +96,7 @@ export const updateUserWhenGoToRoom = async (room: Types.Room, user: Types.User)
       lastActiveAt: Date.now(),
       greeting: false,
     });
-  } catch (err: any) {
+  } catch (err) {
     console.error("Error while updating user going to the room.", err)
   }
 }
@@ -112,7 +112,7 @@ export const setRoomWinner = async (room: Types.Room, winner: Types.User): Promi
       leaderName: null,
       leaderTimestamp: null,
     });
-  } catch (err: any) {
+  } catch (err) {
     console.error("Error while setting winner.", err)
   }
 }
@@ -125,7 +125,7 @@ export const updateWinnerScore = async (winner: Types.User) => {
       lastActiveAt: Date.now(),
       greeting: false,
     });
-  } catch (err: any) {
+  } catch (err) {
     console.error("Error while updating the score.", err)
   }
 }
@@ -138,7 +138,7 @@ export const resetLeader = async (room: Types.Room) => {
       leaderName: null,
       leaderTimestamp: null,
     });
-  } catch (err: any) {
+  } catch (err) {
     console.error("Error while resetting the leader.", err)
   }
 }
@@ -151,7 +151,7 @@ export const resetWinner = async (room: Types.Room) => {
       winnerName: null,
       winnerTimestamp: null,
     });
-  } catch (err: any) {
+  } catch (err) {
     console.error("Error while resetting the leader.", err)
   }
 }
@@ -167,7 +167,7 @@ export const resetGame = async (room: Types.Room) => {
       winnerName: null,
       winnerTimestamp: null,
     });
-  } catch (err: any) {
+  } catch (err) {
     console.error("Error while resetting the leader.", err)
   }
 }
@@ -178,7 +178,7 @@ export const resetCard = async (room: Types.Room) => {
     await updateDoc(roomRef, {
       word: getRandomCard().no,
     });
-  } catch (err: any) {
+  } catch (err) {
     console.error("Error while resetting a card.", err)
   }
 }

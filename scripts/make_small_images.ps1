@@ -4,10 +4,10 @@
 $convertPath = "C:\Program Files\ImageMagick-7.1.1-Q16-HDRI\magick.exe"
 
 # Set the directory path where the files are located
-$directoryPath = ".\Alias\"
-$sourceFolderPath = ".\Alias\"
+$directoryPath = ".\public\test_images"
+$sourceFolderPath = ".\public\test_images"
 
-# Set the target folder paths for small and medium copies
+# Set the target folder paths for small copies
 $targetFolderPathSmall = "$directoryPath\small"
 
 # Width to resize the image to (in pixels)

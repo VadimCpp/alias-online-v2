@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '../components/card'
-import Vocabulary from '../assets/vocabulary.json'
+import Vocabulary from '../vocabulary'
 
 const Dictionary: React.FC = () => {
   return (
