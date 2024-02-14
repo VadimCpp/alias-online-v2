@@ -30,18 +30,20 @@ const User: React.FC = () => {
         }
         <h2 className="text-xl font-semibold mt-4">{isLogged ? name : "Anonymous"}</h2>
       </div>
-      <div className="text-center mt-8">
-        <Link to="/room"
-          className="rounded-md border border-transparent bg-blue-100 px-4 mt-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
-          onClick={async () => { 
-            if (room && user) {
-              await updateUserWhenGoToRoom(room, user)
-            }
-          }}
-        >
-          Play
-        </Link>
-      </div>
+      { isLogged &&
+        <div className="text-center mt-8">
+          <Link to="/room"
+            className="rounded-md border border-transparent bg-blue-100 px-4 mt-4 py-2 text-sm font-medium text-blue-900 hover:bg-blue-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+            onClick={async () => { 
+              if (room && user) {
+                await updateUserWhenGoToRoom(room, user)
+              }
+            }}
+          >
+            Play
+          </Link>
+        </div>
+      }
     </div>
   )
 }
