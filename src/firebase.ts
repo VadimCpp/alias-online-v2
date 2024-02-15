@@ -8,13 +8,13 @@ import Vocabulary from './vocabulary'
 
 const googleProvider = new GoogleAuthProvider()
 const firebaseConfig = {
-  apiKey: "AIzaSyCIXUBQgGrUu6DPyzirXzCOsB_mjA9EIzM",
-  authDomain: "alias-online-13de4.firebaseapp.com",
-  projectId: "alias-online-13de4",
-  storageBucket: "alias-online-13de4.appspot.com",
-  messagingSenderId: "513511160334",
-  appId: "1:513511160334:web:f856fc3504d446d6595a5f"
-}
+  apiKey: "AIzaSyDlwDcJwl6OhJLfAfvXDjL_MMEuwYbvGwQ",
+  authDomain: "alias-online-test.firebaseapp.com",
+  projectId: "alias-online-test",
+  storageBucket: "alias-online-test.appspot.com",
+  messagingSenderId: "1038371823294",
+  appId: "1:1038371823294:web:c0276b1454f87b182208ef"
+};
 
 export const app = initializeApp(firebaseConfig)
 export const db = getFirestore(app)

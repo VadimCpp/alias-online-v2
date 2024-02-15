@@ -22,27 +22,36 @@ npm i
 npm run dev
 ```
 
-## Automatic deployment
+## Deployment
 
-The website is being deployed automatically on `git push`. See file `.github/workflows/azure-deploy.yml` for more details.
+First time deployment takes some time. There are three general steps:
 
-For security reasons, you should store your Azure Storage connection string, storage account and container name as a secrets in your GitHub repository. To add this secret, go to your repository settings, then "Secrets," and create a new secrets with the corresponding names.
+- prepare the images for the production
+- set up and configure the Azure storage account
+- set up Firebase Cloud Firestore
 
-## Images
+### Prepare the images for the production
 
-```bash
+Please download small size images 400x400 from the Google Drive:
+https://drive.google.com/drive/u/1/folders/1lG3uV00T6dLdzMMW9iYUJIWrvuWYI4pb
 
-# Creare new storage account
-az storage account create --name imagesstorageacc --resource-group alias-online-v2 --location norwayeast --sku Standard_LRS
+Put the images into the `public/prod_images` folder.
 
-# Create container for small images
-az storage container create --name smallimages --account-name imagesstorageacc
+NOTE! The images were generated with Midjorney AI. The images are not perfect, but they are good enough for the demo.
 
-```
+You might want to use your own images or get get image of the original size 1024x1024 and resize it to 400x400. In that case please check out `scripts/make_small_images.ps1` script. It uses ImageMagick to resize the images.
 
-## Demo
+### Set up and configure the Azure storage account
 
-New design:
+Please follow the instructions in the `docs/azure-guide.md` file.
+
+### Set up Firebase Cloud Firestore
+
+Please follow the instructions in the `docs/firebase-guide.md` file.
+
+## Dictionary demo
+
+New image set empowered with Midjorney AI:
 
 ![Skjermbilde 2023-10-13 235949](https://github.com/VadimCpp/alias-online-v2/assets/4641125/7ee78b69-a953-44e8-9c6e-b4791ff73c5b)
 

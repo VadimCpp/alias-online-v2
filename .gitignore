@@ -23,4 +23,4 @@ dist-ssr
 *.sln
 *.sw?
 
-public/images
+public/prod_images/*.png

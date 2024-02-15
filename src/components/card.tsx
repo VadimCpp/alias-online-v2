@@ -3,9 +3,7 @@ import type { Card } from '../types';
 import './card.css';
 
 const Card: React.FC<Card> = (card: Card) => {
-  const BASE_URL = (import.meta.env.MODE === 'development') ?
-    "./test_images" :
-    "https://imagesstorageacc.blob.core.windows.net/smallimages"
+  const BASE_URL = (import.meta.env.MODE === 'development') ? "./test_images" : "./prod_images"
 
   const source = `${BASE_URL}/${card.id}_small.png`
   return (
