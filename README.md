@@ -1,6 +1,6 @@
 # React + Redux + TypeScript + Vite + TailwindCSS + Azure + Firebase
 
-> Visit the webpage: https://aliasonlinestorageacc.z1.web.core.windows.net/
+> The Classic Alias Game
 
 Technology stack:
 
@@ -43,11 +43,11 @@ You might want to use your own images or get get image of the original size 1024
 
 ### Set up and configure the Azure storage account
 
-Please follow the instructions in the `docs/azure-guide.md` file.
+Please follow the instructions in the [docs/azure-guide](docs/azure-guide.md) file.
 
 ### Set up Firebase Cloud Firestore
 
-Please follow the instructions in the `docs/firebase-guide.md` file.
+Please follow the instructions in the [docs/firebase-guide](docs/firebase-guide.md) file.
 
 ## Dictionary demo
 
