@@ -55,7 +55,7 @@ az group list --output table
 To create a new resource group, run the following command:
 
 ```bash
-az group azcreate --name alias-online --location norwayeast
+az group create --name alias-online --location norwayeast
 ```
 
 This command will create a new resource group with the name `alias-online` in the location `norwayeast`.
